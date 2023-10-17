@@ -39,6 +39,11 @@ export class UsersController {
     return user;
   }
 
+  @Post('/signout')
+  signOut(@Session() session: any) {
+    session.userId = null;
+  }
+
   @Get('/me')
   getCurrentUser(@Session() session: any) {
     return this.userService.findOne(session.userId);
