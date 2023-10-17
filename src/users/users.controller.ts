@@ -16,6 +16,9 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { UserDto } from './dto/user.dto';
 import { AuthService } from './auth/auth.service';
+import { CurrentUser } from './decorators/current-user.decorator';
+
+import { User } from './user.entity';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -45,8 +48,8 @@ export class UsersController {
   }
 
   @Get('/me')
-  getCurrentUser(@Session() session: any) {
-    return this.userService.findOne(session.userId);
+  getCurrentUser(@CurrentUser() user: User) {
+    return user;
   }
 
   @Get('/:id')
