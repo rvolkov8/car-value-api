@@ -9,9 +9,6 @@ import {
 
 export class CreateReportDto {
   @IsNumber()
-  id: number;
-
-  @IsNumber()
   @Min(0)
   @Max(1000000)
   price: number;
